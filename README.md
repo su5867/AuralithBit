@@ -13,11 +13,10 @@ AuralithBit serves as a **modern informational website** tailored for an educati
 
 ## Features
 
-- **Responsive layout** compatible with desktop and mobile devices
-- **Navigation menu** for easy access to sections
-- **Service and course descriptions**
-- **Contact section** for user communication
-- Clean UI design for professional presentation
+- Secure Admin Login
+- Dashboard interface for managing system entities (users, data, etc.)
+- Demo credentials for quick access
+- Built with modern frontend technologies (e.g., Aurelia/React/Vue/Next.js — adjust based on actual stack)
 
 ## Technologies Used
 
@@ -25,6 +24,10 @@ AuralithBit serves as a **modern informational website** tailored for an educati
 - CSS3
 - JavaScript
 
+## Live Demo
+
+The application is deployed on **Vercel** and accessible at:  
+**https://auralith-bit.vercel.app/**
 
 ## Installation & Usage
 
