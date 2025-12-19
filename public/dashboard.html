@@ -133,6 +133,11 @@
             border-color: #667eea;
         }
         
+        .required::after {
+            content: " *";
+            color: #e74c3c;
+        }
+        
         .btn {
             padding: 12px 30px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -142,17 +147,24 @@
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: all 0.3s;
             margin-right: 10px;
             margin-bottom: 10px;
         }
         
         .btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         
         .btn:active {
             transform: translateY(0);
+        }
+        
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
         }
         
         .btn-secondary {
@@ -167,8 +179,18 @@
             background: #dc3545;
         }
         
+        .btn-warning {
+            background: #ffc107;
+            color: #333;
+        }
+        
         .students-list {
             margin-top: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 10px;
         }
         
         .student-item {
@@ -190,6 +212,7 @@
         .student-info p {
             color: #666;
             font-size: 14px;
+            margin: 2px 0;
         }
         
         .student-actions {
@@ -258,12 +281,188 @@
             color: #0c5460;
             border: 1px solid #bee5eb;
         }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .system-status {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+            padding: 5px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .status-item:last-child {
+            border-bottom: none;
+        }
+        
+        .status-label {
+            color: #555;
+        }
+        
+        .status-value {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .status-value.success {
+            color: #28a745;
+        }
+        
+        .status-value.error {
+            color: #dc3545;
+        }
+        
+        .receipt-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .receipt-action-btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+        
+        .receipt-action-btn.download {
+            background: #3498db;
+            color: white;
+        }
+        
+        .receipt-action-btn.view {
+            background: #2ecc71;
+            color: white;
+        }
+        
+        .receipt-action-btn.email {
+            background: #9b59b6;
+            color: white;
+        }
+        
+        .receipt-action-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .debug-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+            border-left: 4px solid #ffc107;
+        }
+        
+        .debug-info h5 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f2ff;
+        }
+        
+        .form-section h3 {
+            color: #444;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .form-section h3 i {
+            margin-right: 8px;
+            color: #667eea;
+        }
+        
+        .auto-calc-note {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+        
+        .statistics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+        }
+        
+        .stat-card h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .stat-card .value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-card .label {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .print-only {
+            display: none;
+        }
+        
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            .print-only {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <div class="logo-container">
-            <img src="/Logo.png" alt="Auralith Bit Logo" class="logo">
+            <img src="/Logo.png" alt="Auralith Bit Logo" class="logo" onerror="this.style.display='none'">
             <h1>Auralith Bit - Admin Dashboard</h1>
         </div>
         <button class="logout-btn" onclick="logout()">Logout</button>
@@ -272,125 +471,302 @@
     <div class="tabs">
         <div class="tab active" onclick="switchTab('students')">Student Management</div>
         <div class="tab" onclick="switchTab('payments')">Payment Processing</div>
+        <div class="tab" onclick="switchTab('reports')">Reports</div>
     </div>
     
     <div class="content">
         <!-- Students Tab -->
         <div id="students-tab" class="tab-content active">
             <h2>Student Registration Form</h2>
-            <p style="color: #666; margin-bottom: 20px;">Siddharthanagar<br>Contact: +977-XXXXXXXXXX<br>Email: info@auralith.com</p>
             
-            <h3>Student's Details:</h3>
-            <div class="form-grid">
-                <input type="text" id="name" placeholder="Name *">
-                <input type="tel" id="phone" placeholder="Phone Number *">
-                <input type="email" id="email" placeholder="E-mail Address *">
-                <input type="text" id="address" placeholder="Address">
-                <input type="date" id="dob" placeholder="Date of Birth">
-                <select id="gender">
-                    <option value="">Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Others">Others</option>
-                </select>
-                <input type="text" id="faculty" placeholder="Faculty / Program">
-                <input type="text" id="college" placeholder="Name of College">
-                <input type="text" id="parentName" placeholder="Parent's Name">
-                <input type="tel" id="parentContact" placeholder="Parent's Contact number">
+            <div class="system-status">
+                <div class="status-item">
+                    <span class="status-label">Server Status:</span>
+                    <span class="status-value success" id="serverStatus">Connected</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Total Students:</span>
+                    <span class="status-value" id="totalStudents">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Excel File:</span>
+                    <span class="status-value success" id="excelStatus">Ready</span>
+                </div>
             </div>
             
-            <h3>Course Details:</h3>
-            <select id="course" style="margin-bottom: 20px; width: 300px;">
-                <option value="">Select Course</option>
-                <option value="Graphic Designing">Graphic Designing</option>
-                <option value="MERN Stack">MERN Stack</option>
-                <option value="UI / UX Designing">UI / UX Designing</option>
-                <option value="Quality Assurance (QA)">Quality Assurance (QA)</option>
-                <option value="WEB Designing">WEB Designing</option>
-                <option value="Digital Marketing">Digital Marketing</option>
-                <option value="Python">Python</option>
-                <option value="Office Package">Office Package</option>
-            </select>
-            
-            <h3>Preferred Batch Time:</h3>
-            <select id="batchTime" style="margin-bottom: 20px; width: 300px;">
-                <option value="">Select Batch Time</option>
-                <option value="Morning">Morning</option>
-                <option value="Day">Day</option>
-                <option value="Evening">Evening</option>
-            </select>
-            
-            <h3>How did you hear about us?</h3>
-            <select id="heardFrom" style="margin-bottom: 20px; width: 300px;">
-                <option value="">Select</option>
-                <option value="Facebook">Facebook</option>
-                <option value="Tiktok">Tiktok</option>
-                <option value="Friends/Family">Friends/Family</option>
-                <option value="Website">Website</option>
-                <option value="LinkedIn">LinkedIn</option>
-                <option value="Others">Others</option>
-            </select>
-            
-            <h3>Payment Details:</h3>
-            <div class="form-grid">
-                <input type="number" id="totalFee" placeholder="Total Fee *">
-                <input type="number" id="discount" placeholder="Discount">
-                <input type="number" id="amountPaid" placeholder="Amount Paid *">
-                <input type="number" id="remainingBalance" placeholder="Remaining Balance">
+            <div class="form-section">
+                <h3><i>📝</i> Student's Details</h3>
+                <div class="form-grid">
+                    <div>
+                        <label class="required">Full Name</label>
+                        <input type="text" id="name" placeholder="Enter full name">
+                    </div>
+                    <div>
+                        <label class="required">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter phone number">
+                    </div>
+                    <div>
+                        <label class="required">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter email address">
+                    </div>
+                    <div>
+                        <label>Address</label>
+                        <input type="text" id="address" placeholder="Enter address">
+                    </div>
+                    <div>
+                        <label>Date of Birth</label>
+                        <input type="date" id="dob">
+                    </div>
+                    <div>
+                        <label>Gender</label>
+                        <select id="gender">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Faculty / Program</label>
+                        <input type="text" id="faculty" placeholder="Enter faculty/program">
+                    </div>
+                    <div>
+                        <label>College Name</label>
+                        <input type="text" id="college" placeholder="Enter college name">
+                    </div>
+                    <div>
+                        <label>Parent's Name</label>
+                        <input type="text" id="parentName" placeholder="Enter parent's name">
+                    </div>
+                    <div>
+                        <label>Parent's Contact</label>
+                        <input type="tel" id="parentContact" placeholder="Enter parent's contact">
+                    </div>
+                </div>
             </div>
             
-            <h3>Documents Submitted:</h3>
-            <input type="text" id="documents" placeholder="Documents (comma separated)" style="margin-bottom: 20px;">
+            <div class="form-section">
+                <h3><i>🎓</i> Course Details</h3>
+                <div class="form-grid">
+                    <div>
+                        <label>Course</label>
+                        <select id="course">
+                            <option value="">Select Course</option>
+                            <option value="Graphic Designing">Graphic Designing</option>
+                            <option value="MERN Stack">MERN Stack</option>
+                            <option value="UI/UX Designing">UI/UX Designing</option>
+                            <option value="Quality Assurance (QA)">Quality Assurance (QA)</option>
+                            <option value="Web Designing">Web Designing</option>
+                            <option value="Digital Marketing">Digital Marketing</option>
+                            <option value="Python">Python</option>
+                            <option value="Office Package">Office Package</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Preferred Batch Time</label>
+                        <select id="batchTime">
+                            <option value="">Select Batch Time</option>
+                            <option value="Morning">Morning</option>
+                            <option value="Day">Day</option>
+                            <option value="Evening">Evening</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>How did you hear about us?</label>
+                        <select id="heardFrom">
+                            <option value="">Select Source</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="Tiktok">Tiktok</option>
+                            <option value="Friends/Family">Friends/Family</option>
+                            <option value="Website">Website</option>
+                            <option value="LinkedIn">LinkedIn</option>
+                            <option value="Others">Others</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             
-            <h3>Declaration:</h3>
-            <textarea id="declaration" placeholder="Declaration" rows="3" style="margin-bottom: 20px;"></textarea>
+            <div class="form-section">
+                <h3><i>💰</i> Payment Details</h3>
+                <div class="form-grid">
+                    <div>
+                        <label class="required">Total Fee ($)</label>
+                        <input type="number" id="totalFee" placeholder="Enter total fee" step="0.01">
+                    </div>
+                    <div>
+                        <label>Discount ($)</label>
+                        <input type="number" id="discount" placeholder="Enter discount" step="0.01" value="0">
+                    </div>
+                    <div>
+                        <label class="required">Amount Paid ($)</label>
+                        <input type="number" id="amountPaid" placeholder="Enter amount paid" step="0.01">
+                    </div>
+                    <div>
+                        <label>Remaining Balance ($)</label>
+                        <input type="number" id="remainingBalance" placeholder="Calculated automatically" step="0.01" readonly>
+                    </div>
+                </div>
+                <p class="auto-calc-note">Note: Remaining balance is calculated automatically as: Total Fee - Discount - Amount Paid</p>
+            </div>
             
-            <button class="btn" onclick="addStudent()">Add Student</button>
-            <button class="btn btn-secondary" onclick="exportToExcel()">Export to Excel</button>
+            <div class="form-section">
+                <h3><i>📄</i> Additional Information</h3>
+                <div class="form-grid">
+                    <div style="grid-column: span 2;">
+                        <label>Documents Submitted</label>
+                        <input type="text" id="documents" placeholder="Documents (comma separated)">
+                    </div>
+                    <div style="grid-column: span 2;">
+                        <label>Declaration</label>
+                        <textarea id="declaration" placeholder="Declaration statement" rows="3"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="studentMessage"></div>
+            
+            <div class="action-buttons">
+                <button class="btn" onclick="addStudent()" id="addStudentBtn">
+                    <span id="addStudentText">➕ Add Student</span>
+                </button>
+                <button class="btn btn-secondary" onclick="exportStudentsExcel()" id="exportExcelBtn">
+                    📊 Export to Excel
+                </button>
+                <button class="btn btn-success" onclick="loadStudents()" id="refreshBtn">
+                    🔄 Refresh List
+                </button>
+                <button class="btn btn-warning" onclick="clearStudentForm()" id="clearFormBtn">
+                    🗑️ Clear Form
+                </button>
+            </div>
             
             <div class="students-list">
-                <h3>Existing Students:</h3>
-                <div id="students-list"></div>
+                <h3>Existing Students: <span id="studentCount">0</span> students</h3>
+                <div id="students-list-container">
+                    <p style="text-align: center; color: #666; padding: 20px;">
+                        Loading students...
+                    </p>
+                </div>
             </div>
         </div>
         
         <!-- Payments Tab -->
         <div id="payments-tab" class="tab-content">
             <h2>Payment Processing</h2>
+            
+            <div class="statistics">
+                <div class="stat-card">
+                    <h4>Total Students</h4>
+                    <div class="value" id="paymentTotalStudents">0</div>
+                    <div class="label">Registered students</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Today's Payments</h4>
+                    <div class="value" id="todaysPayments">0</div>
+                    <div class="label">Payments today</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Total Revenue</h4>
+                    <div class="value" id="totalRevenue">$0</div>
+                    <div class="label">Total collected</div>
+                </div>
+            </div>
+            
             <div class="payment-form">
                 <div class="form-group">
-                    <label for="paymentStudentId">Student ID *</label>
-                    <input type="text" id="paymentStudentId" placeholder="Enter Student ID">
+                    <label class="required">Student ID</label>
+                    <input type="text" id="paymentStudentId" placeholder="Enter Student ID or Name">
                 </div>
                 
                 <div class="form-group">
-                    <label for="paymentStudentName">Student Name *</label>
+                    <label class="required">Student Name</label>
                     <input type="text" id="paymentStudentName" placeholder="Enter Student Name">
                 </div>
                 
                 <div class="form-group">
-                    <label for="paymentStudentEmail">Student Email *</label>
+                    <label class="required">Student Email</label>
                     <input type="email" id="paymentStudentEmail" placeholder="Enter Student Email">
                 </div>
                 
                 <div class="form-group">
-                    <label for="paymentAmount">Amount ($) *</label>
-                    <input type="number" id="paymentAmount" placeholder="Enter Amount">
+                    <label class="required">Amount ($)</label>
+                    <input type="number" id="paymentAmount" placeholder="Enter Amount" step="0.01">
                 </div>
                 
                 <div class="form-group">
-                    <label for="paymentDescription">Description</label>
-                    <textarea id="paymentDescription" placeholder="Enter payment description" rows="3"></textarea>
+                    <label>Description</label>
+                    <textarea id="paymentDescription" placeholder="Enter payment description (e.g., Course Fee, Exam Fee, etc.)" rows="3"></textarea>
                 </div>
                 
-                <button class="btn" onclick="processPayment()">Process Payment</button>
+                <div id="paymentMessage"></div>
+                
+                <button class="btn" onclick="processPayment()" id="processPaymentBtn">
+                    <span id="processPaymentText">💳 Process Payment</span>
+                </button>
+                <button class="btn btn-secondary" onclick="clearPaymentForm()">
+                    🗑️ Clear Form
+                </button>
                 
                 <div id="payment-result"></div>
+                
+                <div class="debug-info" id="paymentDebugInfo" style="display: none;">
+                    <h5>Debug Information</h5>
+                    <div id="debugContent"></div>
+                </div>
             </div>
+        </div>
+        
+        <!-- Reports Tab -->
+        <div id="reports-tab" class="tab-content">
+            <h2>Reports & Analytics</h2>
+            
+            <div class="statistics">
+                <div class="stat-card">
+                    <h4>Total Students</h4>
+                    <div class="value" id="reportTotalStudents">0</div>
+                    <div class="label">All registered students</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Total Revenue</h4>
+                    <div class="value" id="reportTotalRevenue">$0</div>
+                    <div class="label">Total payments received</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Courses Count</h4>
+                    <div class="value" id="coursesCount">0</div>
+                    <div class="label">Different courses</div>
+                </div>
+                <div class="stat-card">
+                    <h4>Pending Balance</h4>
+                    <div class="value" id="pendingBalance">$0</div>
+                    <div class="label">Total remaining balance</div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn" onclick="generateStudentReport()">
+                    📋 Student Report
+                </button>
+                <button class="btn btn-secondary" onclick="generatePaymentReport()">
+                    💰 Payment Report
+                </button>
+                <button class="btn btn-success" onclick="generateCourseWiseReport()">
+                    🎓 Course-wise Report
+                </button>
+                <button class="btn btn-warning" onclick="printDashboard()">
+                    🖨️ Print Report
+                </button>
+            </div>
+            
+            <div id="report-result" style="margin-top: 30px;"></div>
         </div>
     </div>
 
     <script>
+        // Global variables
+        let students = [];
+        let payments = [];
+        
         // Check if user is logged in
         const token = localStorage.getItem('token');
         if (!token) {
@@ -415,6 +791,77 @@
             // Activate selected tab
             event.target.classList.add('active');
             document.getElementById(`${tabName}-tab`).classList.add('active');
+            
+            // Load data when switching tabs
+            if (tabName === 'students') {
+                loadStudents();
+            } else if (tabName === 'payments') {
+                updatePaymentStats();
+            } else if (tabName === 'reports') {
+                generateReports();
+            }
+        }
+        
+        // Show message function
+        function showMessage(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.innerHTML = `
+                <div class="message ${type}">
+                    ${message}
+                </div>
+            `;
+            element.style.display = 'block';
+            
+            // Auto-hide success messages after 5 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    element.style.display = 'none';
+                }, 5000);
+            }
+        }
+        
+        // Clear message function
+        function clearMessage(elementId) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = '';
+            element.style.display = 'none';
+        }
+        
+        // Clear student form
+        function clearStudentForm() {
+            document.querySelectorAll('#students-tab input, #students-tab select, #students-tab textarea').forEach(el => {
+                if (el.type !== 'button' && !el.readOnly) el.value = '';
+            });
+            document.getElementById('remainingBalance').value = '';
+            showMessage('studentMessage', 'Form cleared successfully', 'success');
+        }
+        
+        // Clear payment form
+        function clearPaymentForm() {
+            document.getElementById('paymentStudentId').value = '';
+            document.getElementById('paymentStudentName').value = '';
+            document.getElementById('paymentStudentEmail').value = '';
+            document.getElementById('paymentAmount').value = '';
+            document.getElementById('paymentDescription').value = '';
+            document.getElementById('paymentMessage').innerHTML = '';
+            document.getElementById('payment-result').innerHTML = '';
+            document.getElementById('paymentDebugInfo').style.display = 'none';
+        }
+        
+        // Calculate remaining balance
+        function calculateBalance() {
+            const totalFee = parseFloat(document.getElementById('totalFee').value) || 0;
+            const discount = parseFloat(document.getElementById('discount').value) || 0;
+            const amountPaid = parseFloat(document.getElementById('amountPaid').value) || 0;
+            const remainingBalance = totalFee - amountPaid - discount;
+            
+            const balanceField = document.getElementById('remainingBalance');
+            if (remainingBalance >= 0) {
+                balanceField.value = remainingBalance.toFixed(2);
+            } else {
+                balanceField.value = '0.00';
+                showMessage('studentMessage', 'Warning: Amount paid exceeds total fee after discount', 'error');
+            }
         }
         
         // Students Management Functions
@@ -426,33 +873,67 @@
                 return;
             }
             
+            // Get form values
             const student = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
-                address: document.getElementById('address').value,
+                name: document.getElementById('name').value.trim(),
+                phone: document.getElementById('phone').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                address: document.getElementById('address').value.trim(),
                 dob: document.getElementById('dob').value,
                 gender: document.getElementById('gender').value,
-                faculty: document.getElementById('faculty').value,
-                college: document.getElementById('college').value,
-                parentName: document.getElementById('parentName').value,
-                parentContact: document.getElementById('parentContact').value,
+                faculty: document.getElementById('faculty').value.trim(),
+                college: document.getElementById('college').value.trim(),
+                parentName: document.getElementById('parentName').value.trim(),
+                parentContact: document.getElementById('parentContact').value.trim(),
                 course: document.getElementById('course').value,
                 batchTime: document.getElementById('batchTime').value,
                 heardFrom: document.getElementById('heardFrom').value,
-                totalFee: document.getElementById('totalFee').value,
-                discount: document.getElementById('discount').value,
-                amountPaid: document.getElementById('amountPaid').value,
-                remainingBalance: document.getElementById('remainingBalance').value,
-                documents: document.getElementById('documents').value,
-                declaration: document.getElementById('declaration').value
+                totalFee: parseFloat(document.getElementById('totalFee').value) || 0,
+                discount: parseFloat(document.getElementById('discount').value) || 0,
+                amountPaid: parseFloat(document.getElementById('amountPaid').value) || 0,
+                remainingBalance: parseFloat(document.getElementById('remainingBalance').value) || 0,
+                documents: document.getElementById('documents').value.trim(),
+                declaration: document.getElementById('declaration').value.trim()
             };
             
             // Validate required fields
-            if (!student.name || !student.phone || !student.email || !student.totalFee || !student.amountPaid) {
-                alert('Please fill in all required fields (Name, Phone, Email, Total Fee, Amount Paid)');
+            if (!student.name) {
+                showMessage('studentMessage', 'Name is required', 'error');
+                document.getElementById('name').focus();
                 return;
             }
+            if (!student.phone) {
+                showMessage('studentMessage', 'Phone number is required', 'error');
+                document.getElementById('phone').focus();
+                return;
+            }
+            if (!student.email) {
+                showMessage('studentMessage', 'Email is required', 'error');
+                document.getElementById('email').focus();
+                return;
+            }
+            if (!student.totalFee || student.totalFee <= 0) {
+                showMessage('studentMessage', 'Total fee is required and must be greater than 0', 'error');
+                document.getElementById('totalFee').focus();
+                return;
+            }
+            if (!student.amountPaid || student.amountPaid <= 0) {
+                showMessage('studentMessage', 'Amount paid is required and must be greater than 0', 'error');
+                document.getElementById('amountPaid').focus();
+                return;
+            }
+            
+            // Calculate remaining balance if not provided
+            if (!student.remainingBalance) {
+                student.remainingBalance = student.totalFee - student.amountPaid - (student.discount || 0);
+                if (student.remainingBalance < 0) student.remainingBalance = 0;
+            }
+            
+            // Show loading
+            const btn = document.getElementById('addStudentBtn');
+            const btnText = document.getElementById('addStudentText');
+            btn.disabled = true;
+            btnText.innerHTML = '<span class="loading"></span> Adding Student...';
             
             try {
                 const response = await fetch('/api/students', {
@@ -467,24 +948,35 @@
                 const data = await response.json();
                 
                 if (response.ok) {
-                    alert('Student added successfully!');
+                    showMessage('studentMessage', `✅ ${data.message} (Total students: ${data.totalStudents})`, 'success');
+                    
                     // Clear form
-                    document.querySelectorAll('#students-tab input, #students-tab select, #students-tab textarea').forEach(el => {
-                        if (el.type !== 'button') el.value = '';
-                    });
-                    loadStudents(); // Reload student list
+                    clearStudentForm();
+                    
+                    // Update status
+                    document.getElementById('totalStudents').textContent = data.totalStudents;
+                    
+                    // Reload student list
+                    loadStudents();
                 } else {
-                    alert('Error: ' + (data.message || 'Failed to add student'));
+                    showMessage('studentMessage', `❌ Error: ${data.message || 'Failed to add student'}`, 'error');
                 }
             } catch (error) {
-                console.error('Error:', error);
-                alert('Error adding student. Please check console for details.');
+                console.error('Error adding student:', error);
+                showMessage('studentMessage', '❌ Error adding student. Check console for details.', 'error');
+            } finally {
+                // Restore button
+                btn.disabled = false;
+                btnText.textContent = '➕ Add Student';
             }
         }
         
         async function loadStudents() {
             const token = localStorage.getItem('token');
             if (!token) return;
+            
+            const container = document.getElementById('students-list-container');
+            container.innerHTML = '<p style="text-align: center; color: #666; padding: 20px;">Loading students...</p>';
             
             try {
                 const response = await fetch('/api/students', {
@@ -493,35 +985,67 @@
                     }
                 });
                 
-                const students = await response.json();
-                const studentsList = document.getElementById('students-list');
+                const data = await response.json();
+                students = Array.isArray(data) ? data : [];
+                
+                document.getElementById('studentCount').textContent = students.length;
+                document.getElementById('totalStudents').textContent = students.length;
+                document.getElementById('paymentTotalStudents').textContent = students.length;
+                document.getElementById('reportTotalStudents').textContent = students.length;
+                
+                // Calculate statistics
+                let totalRevenue = 0;
+                let pendingBalance = 0;
+                let courses = new Set();
+                
+                students.forEach(student => {
+                    totalRevenue += parseFloat(student.amountPaid) || 0;
+                    pendingBalance += parseFloat(student.remainingBalance) || 0;
+                    if (student.course) courses.add(student.course);
+                });
+                
+                document.getElementById('totalRevenue').textContent = '$' + totalRevenue.toFixed(2);
+                document.getElementById('reportTotalRevenue').textContent = '$' + totalRevenue.toFixed(2);
+                document.getElementById('pendingBalance').textContent = '$' + pendingBalance.toFixed(2);
+                document.getElementById('coursesCount').textContent = courses.size;
                 
                 if (students.length === 0) {
-                    studentsList.innerHTML = '<p style="color: #666; text-align: center;">No students found</p>';
+                    container.innerHTML = `
+                        <div style="text-align: center; padding: 40px; color: #666;">
+                            <h4>No students found</h4>
+                            <p>Add your first student using the form above.</p>
+                        </div>
+                    `;
                     return;
                 }
                 
                 let html = '';
-                students.forEach((student, index) => {
+                students.forEach((student) => {
                     html += `
                         <div class="student-item">
                             <div class="student-info">
                                 <h4>${student.name || 'Unknown'}</h4>
-                                <p>Email: ${student.email || 'N/A'} | Phone: ${student.phone || 'N/A'}</p>
-                                <p>Course: ${student.course || 'N/A'} | Batch: ${student.batchTime || 'N/A'}</p>
+                                <p>📧 ${student.email || 'No email'} | 📱 ${student.phone || 'No phone'}</p>
+                                <p>🎓 ${student.course || 'No course'} | ⏰ ${student.batchTime || 'No batch'}</p>
+                                <p>💰 Fee: $${student.totalFee || 0} | Paid: $${student.amountPaid || 0} | Balance: $${student.remainingBalance || 0}</p>
+                                <p>📅 Added: ${student.createdAt ? new Date(student.createdAt).toLocaleDateString() : 'N/A'}</p>
                             </div>
                             <div class="student-actions">
-                                <button class="btn btn-secondary" onclick="editStudent(${index})">Edit</button>
-                                <button class="btn btn-danger" onclick="deleteStudent(${index})">Delete</button>
+                                <button class="btn btn-danger" onclick="deleteStudent(${student.id})">🗑️ Delete</button>
                             </div>
                         </div>
                     `;
                 });
                 
-                studentsList.innerHTML = html;
+                container.innerHTML = html;
+                
             } catch (error) {
                 console.error('Error loading students:', error);
-                document.getElementById('students-list').innerHTML = '<p style="color: #e74c3c;">Error loading students</p>';
+                container.innerHTML = `
+                    <div class="message error">
+                        ❌ Error loading students: ${error.message}
+                    </div>
+                `;
             }
         }
         
@@ -537,57 +1061,63 @@
                     }
                 });
                 
+                const data = await response.json();
+                
                 if (response.ok) {
-                    alert('Student deleted successfully!');
+                    showMessage('studentMessage', `✅ ${data.message} (Total students: ${data.totalStudents})`, 'success');
+                    document.getElementById('totalStudents').textContent = data.totalStudents;
                     loadStudents();
                 } else {
-                    const data = await response.json();
-                    alert('Error: ' + (data.message || 'Failed to delete student'));
+                    showMessage('studentMessage', `❌ Error: ${data.message || 'Failed to delete student'}`, 'error');
                 }
             } catch (error) {
-                console.error('Error:', error);
-                alert('Error deleting student');
+                console.error('Error deleting student:', error);
+                showMessage('studentMessage', '❌ Error deleting student', 'error');
             }
         }
         
-        async function editStudent(id) {
-            // For simplicity, just delete and re-add
-            // In a real app, you would show an edit form
-            alert('Edit functionality would open a form. For now, delete and re-add.');
-        }
-        
-        async function exportToExcel() {
+        async function exportStudentsExcel() {
             const token = localStorage.getItem('token');
             try {
-                const response = await fetch('/api/students', {
+                // Show loading
+                const btn = document.getElementById('exportExcelBtn');
+                const originalText = btn.textContent;
+                btn.innerHTML = '<span class="loading"></span> Exporting...';
+                btn.disabled = true;
+                
+                const response = await fetch('/api/students/export', {
                     headers: {
                         'Authorization': `Bearer ${token}`
                     }
                 });
                 
-                const students = await response.json();
-                
-                // Create CSV content
-                let csv = 'Name,Email,Phone,Course,Batch,Total Fee,Amount Paid,Remaining Balance\n';
-                students.forEach(student => {
-                    csv += `"${student.name || ''}","${student.email || ''}","${student.phone || ''}","${student.course || ''}","${student.batchTime || ''}",${student.totalFee || 0},${student.amountPaid || 0},${student.remainingBalance || 0}\n`;
-                });
-                
-                // Create download link
-                const blob = new Blob([csv], { type: 'text/csv' });
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'students_export.csv';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                window.URL.revokeObjectURL(url);
-                
-                alert('Students exported to CSV file!');
+                if (response.ok) {
+                    // Create blob from response
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    
+                    // Create download link
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `students_export_${new Date().toISOString().slice(0,10)}.xlsx`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                    
+                    showMessage('studentMessage', '✅ Students exported to Excel successfully!', 'success');
+                } else {
+                    const data = await response.json();
+                    showMessage('studentMessage', `❌ Export failed: ${data.message}`, 'error');
+                }
             } catch (error) {
                 console.error('Error exporting:', error);
-                alert('Error exporting students');
+                showMessage('studentMessage', '❌ Error exporting students', 'error');
+            } finally {
+                // Restore button
+                const btn = document.getElementById('exportExcelBtn');
+                btn.textContent = '📊 Export to Excel';
+                btn.disabled = false;
             }
         }
         
@@ -601,23 +1131,48 @@
             }
             
             const payment = {
-                studentId: document.getElementById('paymentStudentId').value,
-                studentName: document.getElementById('paymentStudentName').value,
-                studentEmail: document.getElementById('paymentStudentEmail').value,
-                amount: document.getElementById('paymentAmount').value,
-                description: document.getElementById('paymentDescription').value
+                studentId: document.getElementById('paymentStudentId').value.trim(),
+                studentName: document.getElementById('paymentStudentName').value.trim(),
+                studentEmail: document.getElementById('paymentStudentEmail').value.trim(),
+                amount: document.getElementById('paymentAmount').value.trim(),
+                description: document.getElementById('paymentDescription').value.trim() || 'Course Fee Payment'
             };
             
             // Validate
-            if (!payment.studentId || !payment.studentName || !payment.studentEmail || !payment.amount) {
-                alert('Please fill in all required fields');
+            if (!payment.studentId) {
+                showMessage('paymentMessage', 'Student ID is required', 'error');
+                document.getElementById('paymentStudentId').focus();
+                return;
+            }
+            if (!payment.studentName) {
+                showMessage('paymentMessage', 'Student name is required', 'error');
+                document.getElementById('paymentStudentName').focus();
+                return;
+            }
+            if (!payment.studentEmail) {
+                showMessage('paymentMessage', 'Student email is required', 'error');
+                document.getElementById('paymentStudentEmail').focus();
+                return;
+            }
+            if (!payment.amount || parseFloat(payment.amount) <= 0) {
+                showMessage('paymentMessage', 'Valid amount is required', 'error');
+                document.getElementById('paymentAmount').focus();
                 return;
             }
             
+            // Show loading
+            const btn = document.getElementById('processPaymentBtn');
+            const btnText = document.getElementById('processPaymentText');
+            btn.disabled = true;
+            btnText.innerHTML = '<span class="loading"></span> Processing...';
+            
             const resultDiv = document.getElementById('payment-result');
-            resultDiv.innerHTML = '<div class="message info">Processing payment...</div>';
+            resultDiv.innerHTML = '';
+            document.getElementById('paymentDebugInfo').style.display = 'none';
             
             try {
+                console.log('Sending payment request:', payment);
+                
                 const response = await fetch('/api/payments', {
                     method: 'POST',
                     headers: {
@@ -628,40 +1183,129 @@
                 });
                 
                 const data = await response.json();
+                console.log('Payment response:', data);
                 
-                if (response.ok) {
-                    const receiptId = data.receiptId;
+                if (response.ok && data.success) {
+                    // Clear form
+                    clearPaymentForm();
+                    
+                    // Show success result
                     resultDiv.innerHTML = `
                         <div class="payment-result">
-                            <h4>✅ Payment Processed Successfully!</h4>
-                            <p><strong>Receipt ID:</strong> ${receiptId}</p>
-                            <p><strong>Amount:</strong> $${payment.amount}</p>
+                            <h4>✅ ${data.message}</h4>
+                            <p><strong>Receipt ID:</strong> ${data.receiptId}</p>
+                            <p><strong>Amount:</strong> $${parseFloat(payment.amount).toFixed(2)}</p>
                             <p><strong>Student:</strong> ${payment.studentName}</p>
                             <p><strong>Email:</strong> ${payment.studentEmail}</p>
+                            <p><strong>Date:</strong> ${new Date(data.timestamp).toLocaleString()}</p>
                             
-                            <div class="action-buttons">
-                                <button class="btn" onclick="downloadReceipt('${receiptId}')">Download Receipt</button>
-                                <button class="btn btn-success" onclick="sendReceipt('${receiptId}', '${payment.studentEmail}', '${payment.studentName}')">Email Receipt to Student</button>
+                            <div class="receipt-actions">
+                                <button class="receipt-action-btn download" onclick="downloadReceipt('${data.receiptId}')">
+                                    📥 Download Receipt (PDF)
+                                </button>
+                                <button class="receipt-action-btn view" onclick="viewReceipt('${data.receiptId}')">
+                                    👁️ View Receipt in Browser
+                                </button>
+                                <button class="receipt-action-btn email" onclick="sendReceipt('${data.receiptId}', '${payment.studentEmail}', '${payment.studentName}')">
+                                    📧 Email Receipt to Student
+                                </button>
                             </div>
                         </div>
                     `;
                     
-                    // Clear form
-                    document.getElementById('paymentAmount').value = '';
-                    document.getElementById('paymentDescription').value = '';
+                    showMessage('paymentMessage', '✅ Payment processed successfully!', 'success');
+                    
+                    // Update payment stats
+                    updatePaymentStats();
                 } else {
-                    resultDiv.innerHTML = `<div class="message error">Error: ${data.message || 'Payment failed'}</div>`;
+                    showMessage('paymentMessage', `❌ Payment failed: ${data.message || 'Unknown error'}`, 'error');
+                    
+                    // Show debug info
+                    document.getElementById('debugContent').innerHTML = `
+                        <p><strong>Response Status:</strong> ${response.status}</p>
+                        <p><strong>Error:</strong> ${JSON.stringify(data)}</p>
+                    `;
+                    document.getElementById('paymentDebugInfo').style.display = 'block';
                 }
             } catch (error) {
                 console.error('Payment error:', error);
-                resultDiv.innerHTML = '<div class="message error">Error processing payment. Check console for details.</div>';
+                showMessage('paymentMessage', '❌ Error processing payment. Check console for details.', 'error');
+                
+                // Show debug info
+                document.getElementById('debugContent').innerHTML = `
+                    <p><strong>Error:</strong> ${error.message}</p>
+                    <p><strong>Stack:</strong> ${error.stack}</p>
+                `;
+                document.getElementById('paymentDebugInfo').style.display = 'block';
+            } finally {
+                // Restore button
+                btn.disabled = false;
+                btnText.textContent = '💳 Process Payment';
             }
         }
         
+        // Download receipt - FIXED VERSION
         function downloadReceipt(receiptId) {
-            window.open(`/api/payments/receipt/${receiptId}`, '_blank');
+            console.log('Attempting to download receipt:', receiptId);
+            
+            // Method 1: Direct download via blob
+            fetch(`/api/payments/receipt/${receiptId}`)
+                .then(response => {
+                    console.log('Download response status:', response.status);
+                    
+                    if (response.ok) {
+                        return response.blob();
+                    } else if (response.status === 404) {
+                        // Try alternative endpoint
+                        console.log('Trying alternative download endpoint...');
+                        return fetch(`/api/payments/download/${receiptId}`).then(res => res.blob());
+                    }
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                })
+                .then(blob => {
+                    console.log('Blob received, size:', blob.size);
+                    
+                    if (blob.size === 0) {
+                        throw new Error('Empty file received');
+                    }
+                    
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `receipt_${receiptId}.pdf`;
+                    document.body.appendChild(a);
+                    a.click();
+                    
+                    // Cleanup
+                    setTimeout(() => {
+                        window.URL.revokeObjectURL(url);
+                        document.body.removeChild(a);
+                    }, 100);
+                    
+                    showMessage('paymentMessage', '✅ Receipt download started!', 'success');
+                })
+                .catch(error => {
+                    console.error('Download error:', error);
+                    
+                    // Method 2: Direct window.open as fallback
+                    console.log('Trying window.open method...');
+                    const downloadWindow = window.open(`/api/payments/receipt/${receiptId}`, '_blank');
+                    
+                    if (!downloadWindow) {
+                        // Method 3: Try alternative endpoint
+                        window.open(`/api/payments/download/${receiptId}`, '_blank');
+                    }
+                    
+                    showMessage('paymentMessage', '⚠️ Opening receipt in new window. If download doesn\'t start, right-click and "Save as".', 'info');
+                });
         }
         
+        // View receipt in browser
+        function viewReceipt(receiptId) {
+            window.open(`/api/payments/view/${receiptId}`, '_blank');
+        }
+        
+        // Send receipt via email
         async function sendReceipt(receiptId, studentEmail, studentName) {
             const token = localStorage.getItem('token');
             const resultDiv = document.getElementById('payment-result');
@@ -682,20 +1326,199 @@
                 
                 const data = await response.json();
                 
-                if (response.ok) {
-                    resultDiv.innerHTML += '<div class="message success" style="margin-top: 15px;">✅ Receipt sent successfully to ' + studentEmail + '</div>';
+                if (response.ok && data.success) {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'message success';
+                    messageDiv.style.marginTop = '15px';
+                    messageDiv.textContent = `✅ ${data.message}`;
+                    resultDiv.appendChild(messageDiv);
                 } else {
-                    resultDiv.innerHTML += '<div class="message error" style="margin-top: 15px;">Error: ' + (data.message || 'Failed to send email') + '</div>';
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = 'message error';
+                    messageDiv.style.marginTop = '15px';
+                    messageDiv.textContent = `❌ Error: ${data.message || 'Failed to send email'}`;
+                    resultDiv.appendChild(messageDiv);
                 }
             } catch (error) {
                 console.error('Email error:', error);
-                resultDiv.innerHTML += '<div class="message error" style="margin-top: 15px;">Error sending email</div>';
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'message error';
+                messageDiv.style.marginTop = '15px';
+                messageDiv.textContent = '❌ Error sending email';
+                resultDiv.appendChild(messageDiv);
             }
         }
         
-        // Load students when page loads
+        // Update payment statistics
+        async function updatePaymentStats() {
+            try {
+                const today = new Date().toISOString().slice(0, 10);
+                const response = await fetch('/api/payments/list', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    payments = data.receipts || [];
+                    
+                    // Count today's payments
+                    const todaysCount = payments.filter(p => {
+                        const paymentDate = new Date(p.created || p.modified).toISOString().slice(0, 10);
+                        return paymentDate === today;
+                    }).length;
+                    
+                    document.getElementById('todaysPayments').textContent = todaysCount;
+                }
+            } catch (error) {
+                console.error('Error updating payment stats:', error);
+            }
+        }
+        
+        // Reports Functions
+        async function generateReports() {
+            const resultDiv = document.getElementById('report-result');
+            resultDiv.innerHTML = '<p>Loading reports...</p>';
+            
+            try {
+                // Generate student report
+                let reportHTML = `
+                    <div class="system-status">
+                        <h3>📊 System Overview</h3>
+                        <div class="status-item">
+                            <span class="status-label">Total Students:</span>
+                            <span class="status-value">${students.length}</span>
+                        </div>
+                `;
+                
+                // Course distribution
+                const courseCount = {};
+                students.forEach(student => {
+                    const course = student.course || 'Not Specified';
+                    courseCount[course] = (courseCount[course] || 0) + 1;
+                });
+                
+                reportHTML += `<div class="status-item"><span class="status-label">Courses Offered:</span><span class="status-value">${Object.keys(courseCount).length}</span></div>`;
+                
+                // Calculate totals
+                let totalFees = 0;
+                let totalPaid = 0;
+                let totalBalance = 0;
+                
+                students.forEach(student => {
+                    totalFees += parseFloat(student.totalFee) || 0;
+                    totalPaid += parseFloat(student.amountPaid) || 0;
+                    totalBalance += parseFloat(student.remainingBalance) || 0;
+                });
+                
+                reportHTML += `
+                    <div class="status-item">
+                        <span class="status-label">Total Fees:</span>
+                        <span class="status-value">$${totalFees.toFixed(2)}</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Total Paid:</span>
+                        <span class="status-value">$${totalPaid.toFixed(2)}</span>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Pending Balance:</span>
+                        <span class="status-value">$${totalBalance.toFixed(2)}</span>
+                    </div>
+                </div>`;
+                
+                // Course-wise breakdown
+                reportHTML += `<div class="form-section"><h3>🎓 Course-wise Distribution</h3>`;
+                
+                for (const [course, count] of Object.entries(courseCount)) {
+                    const percentage = ((count / students.length) * 100).toFixed(1);
+                    reportHTML += `
+                        <div class="status-item">
+                            <span class="status-label">${course}:</span>
+                            <span class="status-value">${count} students (${percentage}%)</span>
+                        </div>
+                    `;
+                }
+                
+                reportHTML += `</div>`;
+                
+                // Recent students
+                reportHTML += `<div class="form-section"><h3>📅 Recent Registrations</h3>`;
+                
+                const recentStudents = [...students]
+                    .sort((a, b) => new Date(b.createdAt || 0) - new Date(a.createdAt || 0))
+                    .slice(0, 5);
+                
+                recentStudents.forEach(student => {
+                    reportHTML += `
+                        <div class="student-item" style="margin-bottom: 10px;">
+                            <div class="student-info">
+                                <h4>${student.name || 'Unknown'}</h4>
+                                <p>${student.course || 'No course'} | ${student.email || 'No email'}</p>
+                                <p>Paid: $${student.amountPaid || 0} | Balance: $${student.remainingBalance || 0}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                reportHTML += `</div>`;
+                
+                resultDiv.innerHTML = reportHTML;
+            } catch (error) {
+                console.error('Error generating reports:', error);
+                resultDiv.innerHTML = `<div class="message error">Error generating reports: ${error.message}</div>`;
+            }
+        }
+        
+        function generateStudentReport() {
+            generateReports();
+        }
+        
+        function generatePaymentReport() {
+            alert('Payment report feature will be implemented soon!');
+        }
+        
+        function generateCourseWiseReport() {
+            alert('Course-wise report feature will be implemented soon!');
+        }
+        
+        function printDashboard() {
+            window.print();
+        }
+        
+        // Initialize dashboard
         window.addEventListener('DOMContentLoaded', () => {
+            // Load students immediately
             loadStudents();
+            
+            // Set up auto-calculation for balance
+            document.getElementById('totalFee').addEventListener('input', calculateBalance);
+            document.getElementById('discount').addEventListener('input', calculateBalance);
+            document.getElementById('amountPaid').addEventListener('input', calculateBalance);
+            
+            // Auto-fill student name when ID is entered
+            document.getElementById('paymentStudentId').addEventListener('blur', function() {
+                const studentId = this.value;
+                if (studentId && students.length > 0) {
+                    const student = students.find(s => s.id == studentId || s.name.includes(studentId));
+                    if (student) {
+                        document.getElementById('paymentStudentName').value = student.name || '';
+                        document.getElementById('paymentStudentEmail').value = student.email || '';
+                    }
+                }
+            });
+            
+            // Set today's date as default for DOB field (for demo)
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('dob').value = today;
+            
+            // Set default declaration
+            document.getElementById('declaration').value = 'I hereby declare that the information provided is true and correct to the best of my knowledge.';
+            
+            // Set default payment description
+            document.getElementById('paymentDescription').value = 'Course Fee Payment';
+            
+            console.log('Dashboard initialized successfully');
         });
     </script>
 </body>
