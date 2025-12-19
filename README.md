@@ -88,7 +88,7 @@ To deploy this application to the cloud so it's accessible from any PC via a pub
    - Render will build and deploy your application automatically.
 
 6. **Access your application**:
-   - Once deployed, Render will provide a public URL (e.g., `https://auralith-student-management.onrender.com`).
+   - Once deployed, Render will provide a public URL (e.g., `https://auralithbit.onrender.com`).
    - The application will be accessible from any device with internet access.
 
 ### Environment Variables (Optional)
