@@ -1,13 +1,14 @@
 [
   {
-    "receiptId": "REC1766125449271_hntjxgc0q",
+    "receiptId": "REC1766160709170MGSMST7G6",
     "studentId": "01",
     "studentName": "Supriya Dwivedi",
     "studentEmail": "suppudubedi2000@gmail.com",
     "amount": 12000,
     "description": "Course Fee Payment",
-    "date": "2025-12-19T06:24:09.437Z",
-    "filePath": "C:\\Users\\supriya\\OneDrive\\Desktop\\Auralith Bit\\auralith-student-management\\receipts\\receipt_REC1766125449271_hntjxgc0q.pdf",
-    "fileName": "receipt_REC1766125449271_hntjxgc0q.pdf"
+    "date": "2025-12-19T16:11:50.594Z",
+    "filePath": "C:\\Users\\supriya\\OneDrive\\Desktop\\Auralith Bit\\auralith-student-management\\receipts\\receipt_REC1766160709170MGSMST7G6.pdf",
+    "fileName": "receipt_REC1766160709170MGSMST7G6.pdf",
+    "generatedBy": "admin@auralith.com"
   }
 ]
