@@ -34,3 +34,69 @@ The application is deployed on **Vercel** and accessible at:
 1. Clone the repository:
    ```bash
    git clone https://github.com/su5867/AuralithBit.git
+   ```
+
+## Docker Deployment
+
+### Local Deployment
+1. Ensure Docker Desktop is running on your system.
+
+2. Open Command Prompt and navigate to the project folder:
+   ```bash
+   cd auralith-student-management
+   ```
+
+3. Build the image:
+   ```bash
+   docker build -t auralith-student-management .
+   ```
+
+4. Run the container:
+   ```bash
+   docker run -p 5000:5000 auralith-student-management
+   ```
+
+The application will be accessible at `http://localhost:5000`.
+
+### Cloud Deployment (Render)
+
+To deploy this application to the cloud so it's accessible from any PC via a public URL:
+
+1. **Push your code to GitHub** (if not already done):
+   ```bash
+   git add .
+   git commit -m "Add Docker support"
+   git push origin main
+   ```
+
+2. **Create a Render account** at [render.com](https://render.com) (free tier available).
+
+3. **Connect your GitHub repository**:
+   - Go to your Render dashboard.
+   - Click "New" > "Web Service".
+   - Connect your GitHub account and select the repository.
+
+4. **Configure the deployment**:
+   - **Name**: Choose a name for your service (e.g., auralith-student-management).
+   - **Environment**: Select "Docker".
+   - **Branch**: Select "main" (or your default branch).
+   - **Build Command**: Leave blank (Render will use the Dockerfile).
+   - **Start Command**: Leave blank (Render will use the CMD from Dockerfile).
+
+5. **Deploy**:
+   - Click "Create Web Service".
+   - Render will build and deploy your application automatically.
+
+6. **Access your application**:
+   - Once deployed, Render will provide a public URL (e.g., `https://auralith-student-management.onrender.com`).
+   - The application will be accessible from any device with internet access.
+
+### Environment Variables (Optional)
+
+If your application uses environment variables (e.g., for database connections, API keys), you can set them in Render:
+- Go to your service dashboard > Environment.
+- Add your environment variables there.
+
+### Notes
+- The free tier on Render has some limitations (e.g., service sleeps after 15 minutes of inactivity).
+- For production use, consider upgrading to a paid plan for better performance and uptime.
