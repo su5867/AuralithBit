@@ -26,8 +26,8 @@ AuralithBit serves as a **modern informational website** tailored for an educati
 
 ## Live Demo
 
-The application is deployed on **Vercel** and accessible at:  
-**https://auralith-bit.vercel.app/**
+The application is deployed on **Render** and accessible at:  
+**https://auralithbit.onrender.com**
 
 ## Installation & Usage
 
