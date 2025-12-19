@@ -20,7 +20,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from public directory
+// Serve static files
 app.use(express.static('public'));
 
 // API Routes
@@ -28,20 +28,26 @@ app.use('/api/auth', authRoutes);
 app.use('/api/students', studentRoutes);
 app.use('/api/payments', paymentRoutes);
 
-// Route for login page
+// Route handlers
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'login.html'));
 });
 
-// Route for dashboard
 app.get('/dashboard', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'dashboard.html'));
 });
 
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    service: 'Auralith Student Management API'
+  });
+});
 
-
-// Create necessary directories if they don't exist
-const directories = ['receipts', 'public'];
+// Create necessary directories
+const directories = ['receipts', 'public', 'data'];
 directories.forEach(dir => {
   const dirPath = path.join(__dirname, dir);
   if (!fs.existsSync(dirPath)) {
@@ -50,10 +56,10 @@ directories.forEach(dir => {
   }
 });
 
-// Check if students.xlsx exists, create if not
+// Check and create students.xlsx if it doesn't exist
 const studentsFile = path.join(__dirname, 'students.xlsx');
 if (!fs.existsSync(studentsFile)) {
-  console.log('📁 Creating students.xlsx file...');
+  console.log('📁 Creating initial students.xlsx file...');
   const XLSX = require('xlsx');
   const workbook = XLSX.utils.book_new();
   const worksheet = XLSX.utils.json_to_sheet([]);
@@ -62,51 +68,23 @@ if (!fs.existsSync(studentsFile)) {
   console.log('✅ Created students.xlsx file');
 }
 
-// Add this route before app.listen() in server.js
-
-// Test PDF generation
-app.get('/test-pdf', (req, res) => {
-  const PDFDocument = require('pdfkit');
-  const fs = require('fs');
-  const path = require('path');
-  
-  // Create test directory
-  const testDir = path.join(__dirname, 'test-receipts');
-  if (!fs.existsSync(testDir)) {
-      fs.mkdirSync(testDir, { recursive: true });
-  }
-  
-  const filePath = path.join(testDir, 'test-receipt.pdf');
-  const doc = new PDFDocument();
-  const writeStream = fs.createWriteStream(filePath);
-  
-  doc.pipe(writeStream);
-  doc.fontSize(25).text('Test PDF Receipt', { align: 'center' });
-  doc.moveDown();
-  doc.fontSize(12).text(`Generated: ${new Date().toLocaleString()}`);
-  doc.text('This is a test PDF to verify PDF generation works.');
-  doc.end();
-  
-  writeStream.on('finish', () => {
-      res.json({
-          success: true,
-          message: 'Test PDF generated',
-          filePath: filePath,
-          downloadUrl: `/download-test-pdf`
-      });
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error('❌ Server Error:', err);
+  res.status(500).json({
+    success: false,
+    message: 'Internal server error',
+    error: process.env.NODE_ENV === 'development' ? err.message : undefined
   });
 });
 
-// Download test PDF
-app.get('/download-test-pdf', (req, res) => {
-  const filePath = path.join(__dirname, 'test-receipts', 'test-receipt.pdf');
-  if (fs.existsSync(filePath)) {
-      res.download(filePath);
-  } else {
-      res.status(404).send('Test PDF not found');
-  }
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: 'Route not found'
+  });
 });
-
 
 // Start server
 app.listen(PORT, () => {
@@ -114,4 +92,5 @@ app.listen(PORT, () => {
   console.log(`🌐 Open http://localhost:${PORT} in your browser`);
   console.log(`📁 Students file: ${studentsFile}`);
   console.log(`📁 Receipts folder: ${path.join(__dirname, 'receipts')}`);
+  console.log(`✅ API Health check: http://localhost:${PORT}/api/health`);
 });
